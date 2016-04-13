@@ -71,6 +71,14 @@ def is_rhyme(phonemes1, phonemes2):
         return False
 
 
+def stress_mask(phonemes):
+    """
+    >>> stress_mask([u'DH', u'EH0', u'R', u'W', u'AA1', u'Z', u'AH0', u'L', u'IH1', u'T', u'AH0', u'L', u'G', u'IH1', u'N', u'IY0', u'P', u'IH1', u'G'])
+    [False, True, False, True, False, True, False, True]
+    """
+    return [is_stressed(ph) for ph in phonemes if is_vowel(ph)]
+
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod(verbose=True)
