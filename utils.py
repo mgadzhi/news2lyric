@@ -9,3 +9,7 @@ def combinations(*args):
         for x in combinations(*args[1:]):
             combs.append([item] + x)
     return combs
+
+
+def flatten(l):
+    return [item for sublist in l for item in sublist]
