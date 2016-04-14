@@ -3,3 +3,4 @@
 .vscode/
 *.jar
 *.pyc
+api_key.txt
