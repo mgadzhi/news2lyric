@@ -2,12 +2,13 @@
 
 from nltk.corpus import cmudict
 
+import utils
 
 stress_dict = cmudict.dict()
 
 
 def get_phonemes(word):
-    """
+    u"""
     >>> get_phonemes("hello")
     [[u'HH', u'AH0', u'L', u'OW1'], [u'HH', u'EH0', u'L', u'OW1']]
     >>> get_phonemes("world")
@@ -17,7 +18,17 @@ def get_phonemes(word):
     >>> get_phonemes("Anneleen") is None
     True
     """
-    return stress_dict.get(word)
+    if '-' in word:
+        subwords = word.split(u'-')
+        return map(utils.flatten, utils.combinations(*[get_phonemes(subword) for subword in subwords]))
+    if word.endswith(u"'s"):
+        word = word[0:-2]
+        stresses = stress_dict.get(word)
+        if stresses is not None:
+            stresses = map(lambda l: l + [u'S'], stresses)
+    else:
+        stresses = stress_dict.get(word)
+    return stresses
 
 
 def is_vowel(phoneme):
