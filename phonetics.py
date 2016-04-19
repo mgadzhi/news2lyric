@@ -23,11 +23,13 @@ def get_phonemes(word):
         return map(utils.flatten, utils.combinations(*[get_phonemes(subword) for subword in subwords]))
     if word.endswith(u"'s"):
         word = word[0:-2]
-        stresses = stress_dict.get(word)
+        stresses = stress_dict.get(word, [])
         if stresses is not None:
             stresses = map(lambda l: l + [u'S'], stresses)
     else:
-        stresses = stress_dict.get(word)
+        # We have repeated logic here.
+        # We need to encapsulate stress_dict.get(word, []) to a separate function
+        stresses = stress_dict.get(word, [])
     return stresses
 
 
