@@ -13,9 +13,9 @@ def get_phonemes(word):
     [[u'HH', u'AH0', u'L', u'OW1'], [u'HH', u'EH0', u'L', u'OW1']]
     >>> get_phonemes("world")
     [[u'W', u'ER1', u'L', u'D']]
-    >>> get_phonemes("Capitalized") is None
+    >>> get_phonemes("Capitalized") == []
     True
-    >>> get_phonemes("Anneleen") is None
+    >>> get_phonemes("Anneleen") == []
     True
     """
     if '-' in word:
@@ -71,15 +71,15 @@ def is_stressed(phoneme):
     return phoneme[-1] == '1'
 
 
-def is_rhyme(phonemes1, phonemes2):
+def is_rhyme(*lines):
     """
     >>> is_rhyme([u'B', u'IH1', u'G'], [u'P', u'IH1', u'G'])
     True
     """
-    vowels = [(i, phoneme) for i, phoneme in enumerate(phonemes1) if is_vowel(phoneme)]
+    vowels = [(i, phoneme) for i, phoneme in enumerate(lines[0]) if is_vowel(phoneme)]
     if vowels:
         idx, last_vowel = vowels[-1]
-        return phonemes1[-(idx + 1):] == phonemes2[-(idx + 1):]
+        return len(set(tuple(line[-(idx + 1):]) for line in lines)) == 1
     else:
         return False
 
