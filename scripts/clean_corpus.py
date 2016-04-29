@@ -76,10 +76,9 @@ def remove_doublespace(line):
 
 
 def main():
-    #source = codecs.getreader(u'utf-8')(sys.stdin)
-    source = codecs.open('tryout.txt', 'r', 'utf-8')
-    #sink = codecs.getwriter(u'utf-8')(sys.stdout)
-    sink = codecs.open('zzz.txt', 'w', 'utf-8')
+    source = codecs.getreader(u'utf-8')(sys.stdin)
+    sink = codecs.getwriter(u'utf-8')(sys.stdout)
+    
     # if necessary, split_on_new_line
     lines_without_enumeration_digits = (delete_enumeration_digit(line) for line in source)
     lines_without_enumeration_charachters = (delete_enumeration_character(line) for line in lines_without_enumeration_digits)
