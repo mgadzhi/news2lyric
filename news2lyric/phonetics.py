@@ -79,7 +79,8 @@ def is_rhyme(*lines):
     vowels = [(i, phoneme) for i, phoneme in enumerate(lines[0]) if is_vowel(phoneme)]
     if vowels:
         idx, last_vowel = vowels[-1]
-        return len(set(tuple(line[-(idx + 1):]) for line in lines)) == 1
+        reverse_idx = len(lines[0]) - idx
+        return len(set(tuple(line[-reverse_idx:]) for line in lines)) == 1
     else:
         return False
 
