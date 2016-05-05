@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>News to lyric</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <style>
+        body {
+            background: url('static/texture1.jpg') no-repeat 0 0 transparent;
+        }
+        div.title {
+            display: none;
+        }
+        div.titles {
+            font: bold 20px "Open Sans", sans-serif;
+        }
+        p.poem {
+            font: normal 18px "Open Sans", sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="header" align="center">Producing poems. Creativity can take a while...</h1>
+    <div class="titles" align="center">
+    {% for title, id in titles %}
+        <div class="title" id="{{ id }}">{{ title }}</div>
+    {% endfor %}
+    </div>
+
+    <script src="static/main.js"></script>
+</body>
+
+</html>
