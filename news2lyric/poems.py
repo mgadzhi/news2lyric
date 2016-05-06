@@ -21,6 +21,15 @@ def produce_poem_with_line(file_paths, rhyme_structure, line_fname, found_words_
         line_rhyme = random.choice(line_rhymes)
     poem.append(line_rhyme)
     if found_words_title == 'subj&verb':
+        line3 = subj_or_verb_line[0]
+        with open(os.path.join(dirname, subj_or_verb_line[1])) as line_rhymes_file:
+            line_rhymes = [l.strip() for l in line_rhymes_file]
+        line4 = random.choice(line_rhymes)
+        while subj_or_verb_line[0].split(' ')[-1] == line4.split(' ')[-1]:
+            line4 = random.choice(line_rhymes)
+        poem.append(line3)
+        poem.append(line4)
+    if found_words_title == 'subj':
         next_file = random.choice(file_paths)
         with open(next_file) as nf:
             next_line_candidates = [l.strip() for l in nf]
@@ -28,15 +37,6 @@ def produce_poem_with_line(file_paths, rhyme_structure, line_fname, found_words_
             line4 = random.choice(next_line_candidates)
             while line3.split(' ')[-1] == line4.split(' ')[-1]:
                 line4 = random.choice(next_line_candidates)
-        poem.append(line3)
-        poem.append(line4)
-    if found_words_title == 'subj':
-        line3 = subj_or_verb_line[0]
-        with open(os.path.join(dirname, subj_or_verb_line[1])) as line_rhymes_file:
-            line_rhymes = [l.strip() for l in line_rhymes_file]
-        line4 = random.choice(line_rhymes)
-        while subj_or_verb_line[0].split(' ')[-1] == line4.split(' ')[-1]:
-            line4 = random.choice(line_rhymes)
         poem.append(line3)
         poem.append(line4)
     return poem
