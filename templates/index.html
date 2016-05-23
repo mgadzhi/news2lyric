@@ -1,34 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link type="text/css" rel="stylesheet" href="stylesheet.css"/>
     <meta charset="UTF-8">
     <title>News to lyric</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <style>
         body {
-            background: url('static/texture1.jpg') no-repeat 0 0 transparent;
+        	background: url('static/texture3.jpg') no-repeat 0 0 transparent;
+        	background-size: cover;
+            background-attachement: fixed;
+        }
+        #leftie {
+            font-family: Verdana, sans-serif;
+	        font-size: 20px;
+	        width: 280px;
+	        float: left;
+	        margin-left: 80px;
+	        margin-top: 60px;
+	        border: 3px solid #cc99ff;
+	        background: url('static/texture3.jpg') no-repeat 0 0 transparent;
+            background-size: cover;
+            color: #cc99ff;
+            text-align: center;
+            font: 40px fantasy;
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+            margin-left: 900px;
         }
         div.title {
             display: none;
         }
         div.titles {
-            font: bold 20px "Open Sans", sans-serif;
+            font: bold 22px Lucidatypewriter, monospace;
+            text-align: center;
+            margin-left: 950px;
+            height: 900px;
+            overflow: scroll;
         }
         p.poem {
-            font: normal 18px "Open Sans", sans-serif;
+            font: normal 18px Florence, cursive;
+            margin-left: 250px;
+            margin-right: 300px;
+            text-align: center;
         }
+        a:link {
+            text-decoration: none;
+            color: black;
+        }
+        a:visited {
+            color: #4a4a4a;;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #990033;
+        }
+        a:active {
+            color: #990033;
+           }
+
     </style>
 </head>
 
 <body>
-    <h1 id="header" align="center">Producing poems. Creativity can take a while...</h1>
-    <div class="titles" align="center">
-    {% for title, id in titles %}
-        <div class="title" id="{{ id }}">{{ title }}</div>
-    {% endfor %}
+    <div id="leftie"> <p>- News2Lyric -</p>
+        <p> <img width="150px" height="150px" src="static/under-construction.png" /></p>
     </div>
-
+    <h1 id="header" >Producing poems. Creativity can take a while...</h1>
+    <div class="titles" >
+    {% for title, id in titles %}
+        <div class="title" id="{{ id }}"><a href="http://www.knack.be/nieuws/">{{ title }}</a></div>
+    {% endfor %}
     <script src="static/main.js"></script>
+    </div>
 </body>
 
 </html>
