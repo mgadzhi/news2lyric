@@ -11,16 +11,17 @@ def is_good_enough(poem):
     return len(set(line.split(' ')[-1] for line in poem)) == len(poem)
 
 
-def produce_poem_with_line(file_paths, rhyme_structure, line_fname, found_words_title, subj_or_verb_line=None):
+def produce_poem_with_line(file_paths, rhyme_structure,line_fname, found_words_title, subj_or_verb_line=None):
     dirname = os.path.dirname(file_paths[0])
     poem = [line_fname[0]]
     with open(os.path.join(dirname, line_fname[1])) as line_rhymes_file:
         line_rhymes = [l.strip() for l in line_rhymes_file]
-    line_rhyme = random.choice(line_rhymes)
-    while line_fname[0].split(' ')[-1] == line_rhyme.split(' ')[-1]:
-        line_rhyme = random.choice(line_rhymes)
-    poem.append(line_rhyme)
-    if found_words_title == 'subj&verb':
+    line2 = random.choice(line_rhymes)
+    # check if the second line isn't the same as the first line
+    while line_fname[0].split(' ')[-1] == line2.split(' ')[-1]:
+        line2 = random.choice(line_rhymes)
+    poem.append(line2)
+    if found_words_title == '2items':
         line3 = subj_or_verb_line[0]
         with open(os.path.join(dirname, subj_or_verb_line[1])) as line_rhymes_file:
             line_rhymes = [l.strip() for l in line_rhymes_file]
